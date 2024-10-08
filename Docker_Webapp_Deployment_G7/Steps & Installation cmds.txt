@@ -1,0 +1,62 @@
+# Help for Deploying a Web Application on AWS with Docker
+
+1. ## AWS EC2 Setup:
+
+1. **Launch EC2 Instance:**
+   - Log in to the AWS Management Console.
+   - Navigate to EC2 and click "Launch Instance."
+   - Select an Amazon Machine Image (AMI) (e.g., Amazon Linux 2 or Ubuntu).
+   - Choose an instance type (e.g., t2.micro for the free tier).
+   - Configure security groups to allow inbound traffic on HTTP (port 80) and SSH (port 22).
+
+2. **Download Key Pair:**
+   - Create a new key pair or use an existing one to access your instance.
+   - Download the `.pem` file and keep it safe.
+
+3. **SSH into Your EC2 Instance:**
+   - Open a terminal and run:
+     ```bash
+     ssh -i "my-key.pem" ec2-user@<your-ec2-public-dns>
+     ```
+
+2. ## Docker Installation:
+
+Update the Package Manager:
+sudo apt update -y   # For Ubuntu
+
+Install Docker:
+sudo apt install -y docker.io     # For Ubuntu
+
+Start Docker Service:
+sudo systemctl start docker       # For Ubuntu
+
+3. zip the file on local and then Use SCP to transfer the zip file to ec2:
+scp -i "my-key.pem" my-web-app.zip ec2-user@<your-ec2-public-dns>:~/
+
+4. Unzip and Navigate to Your Project Directory:
+unzip my-web-app.zip
+cd my-web-app
+
+If directory issue happens can do this
+cp -R * ../.   # Copy all files to the parent/project directory
+
+5. Cleaning Up:
+cd ..
+ls  # Check to see the files copied
+rm -Rf zip files  # Remove the downloaded ZIP files
+
+6.Creating the Dockerfile:
+vim Dockerfile  
+
+7. Building the Docker Image:
+docker build -t website .
+
+8. Viewing Your Images:
+docker images
+
+9. Running Your Docker Container:
+docker run -itd -p 80:80 --name <cont_name> website
+
+
+
+
