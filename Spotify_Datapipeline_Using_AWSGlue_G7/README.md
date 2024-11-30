@@ -13,6 +13,8 @@ This project demonstrates the creation of a data engineering pipeline using Spot
 - Query the transformed data with AWS Athena.
 - Visualize insights from the data using Power BI dashboards.
 
+  
+
 ## Technologies Used
 
 - **Spotify API:** For extracting real-time data.
