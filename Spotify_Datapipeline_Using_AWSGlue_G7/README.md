@@ -14,6 +14,9 @@ This project demonstrates the creation of a data engineering pipeline using Spot
 - Visualize insights from the data using Power BI dashboards.
 
   
+## Architecture Diagram
+![Architecture Diagram](./architecture.png)
+    * Include an architecture diagram to illustrate how the different components of the project (AWS services, data flow, etc.) interact with each other.
 
 ## Technologies Used
 
